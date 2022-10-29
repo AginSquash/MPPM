@@ -13,11 +13,11 @@ let n = 3
 
 func split(for size: Int, key: String, from: Int = 0, sourceArray: [Int]) -> [String:ArraySlice<Int>] {
     if sourceArray.count > size+from {
-        return [from/size == 0 ? key: key+"\(from/size)": sourceArray[from..<size+from]].merging(
+        return [from/size == 0 ? key: key+"\(from/size+1)": sourceArray[from..<size+from]].merging(
             split(for: size, key: key, from: size+from, sourceArray: sourceArray),
             uniquingKeysWith: { _,_ in [0] } )
     }
-    return [from/size == 0 ? key: key+"\(from/size)": sourceArray[from...]]
+    return [from/size == 0 ? key: key+"\(from/size+1)": sourceArray[from...]]
 }
 
 func parse(from: Int = 0, size: Int, source_vector: [String:[Int]], index: Dictionary<String, [Int]>.Index) -> [String:ArraySlice<Int>] {
